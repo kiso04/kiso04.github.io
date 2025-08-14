@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Te amo con todo mi corazón</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #f0f8ff, #cceaff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.letter {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+    margin: 30px 0;
+    position: relative;
+    border: 2px solid #ff69b4;
+}
+
+.letter:before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px dashed #ffb6c1;
+    border-radius: 25px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.letter-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    text-align: justify;
+}
+
+.letter-title {
+    text-align: center;
+    color: #ff69b4;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.signature {
+    text-align: right;
+    font-style: italic;
+    margin-top: 20px;
+    color: #ff69b4;
+    font-weight: bold;
+}
+
+/* Escena */
+.scene {
+    position: relative;
+    width: 320px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+/* Texto */
+.scene .text {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff69b4;
+    animation: fadeText 3s ease-in-out infinite alternate;
+}
+
+/* Niña */
+.nina {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 3s infinite alternate;
+}
+
+/* Cabeza */
+.face {
+    width: 90px;
+    height: 90px;
+    background-color: #ffdbac;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 -4px #e6b88f;
+    z-index: 1;
+}
+
+/* CABELLO MEJORADO */
+.hair {
+    width: 110px;
+    height: 120px;
+    background: linear-gradient(to bottom, #5a3921, #3e2616);
+    border-radius: 50% 50% 40% 40%;
+    position: absolute;
+    top: -13px;
+    left: -11px;
+    z-index: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Brillo en el cabello */
+.hair-shine {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+    top: -5px;
+    left: 10%;
+    border-radius: 50%;
+}
+
+/* Flequillo con mechones */
+.bangs {
+    position: absolute;
+    top: -1px;
+    left: -5px;
+    width: 100px;
+    height: 40px;
+    background: #5a3921;
+    border-radius: 50%;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
+
+/* Mechones laterales */
+.side-hair {
+    position: absolute;
+    width: 20px;
+    height: 80px;
+    background: linear-gradient(to bottom, #5a3921, #3e2616);
+    border-radius: 50% 50% 20px 20px;
+    top: 39px;
+}
+
+.side-hair.left { left: 1px; }
+.side-hair.right { right: 1px; }
+
+/* MOÑO */
+.bow {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 40px;
+    height: 30px;
+    z-index: 3;
+    animation: bowWiggle 2s infinite ease-in-out;
+}
+
+/* Parte central */
+.bow-center {
+    width: 15px;
+    height: 15px;
+    background: #ff3366;
+    border-radius: 50%;
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    box-shadow: 0 0 5px rgba(255, 51, 102, 0.7);
+}
+
+/* Lados */
+.bow-left, .bow-right {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #ff3366;
+    border-radius: 50% 50% 0 50%;
+    transform: rotate(45deg);
+    top: 2px;
+}
+
+.bow-left { left: -5px; }
+.bow-right {
+    right: -5px;
+    border-radius: 50% 50% 50% 0;
+}
+
+/* Cinta */
+.bow-ribbon {
+    position: absolute;
+    width: 5px;
+    height: 30px;
+    background: #ff3366;
+    top: 20px;
+    left: 17px;
+    border-radius: 3px;
+}
+
+/* Ojos */
+.eye {
+    width: 16px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 35px;
+    z-index: 2;
+}
+.eye::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+.eye.left { left: 20px; }
+.eye.right { right: 20px; }
+
+/* Mejillas */
+.cheek {
+    width: 14px;
+    height: 8px;
+    background-color: pink;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+}
+.cheek.left { left: 12px; }
+.cheek.right { right: 12px; }
+
+/* Boca */
+.mouth {
+    width: 18px;
+    height: 10px;
+    border-bottom: 3px solid #ff6b6b;
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Vestido */
+.dress {
+    width: 70px;
+    height: 90px;
+    background: linear-gradient(to bottom, #ff69b4, #ff85c1);
+    border-radius: 35px 35px 10px 10px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Brazos */
+.arm {
+    width: 15px;
+    height: 60px;
+    background-color: #ffdbac;
+    position: absolute;
+    top: 10px;
+    border-radius: 10px;
+}
+
+.arm.left {
+    left: -10px;
+    transform-origin: top center;
+    animation: waveLeft 3s infinite;
+}
+
+.arm.right {
+    right: -10px;
+    transform-origin: top center;
+    animation: waveRight 3s infinite;
+}
+
+/* Piernas */
+.leg {
+    width: 15px;
+    height: 40px;
+    background-color: #ffdbac;
+    position: absolute;
+    bottom: -40px;
+    border-radius: 10px;
+}
+
+.leg.left { left: 15px; }
+.leg.right { right: 15px; }
+
+/* Flores */
+.flower {
+    position: absolute;
+    font-size: 22px;
+    opacity: 0;
+    animation: floatFlower 3s ease-in-out forwards;
+}
+
+/* Corazones */
+.heart {
+    position: fixed;
+    font-size: 20px;
+    color: #ff3366;
+    opacity: 0;
+    animation: floatHeart 3s ease-in-out forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Animaciones */
+@keyframes bowWiggle {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(5deg) scale(1.1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -10px); }
+}
+
+@keyframes waveLeft {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-25deg); }
+}
+
+@keyframes waveRight {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(25deg); }
+}
+
+@keyframes floatFlower {
+    0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+    20% { opacity: 1; }
+    50% { transform: translateY(-60px) rotate(360deg); }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-100px) rotate(720deg); }
+}
+
+@keyframes floatHeart {
+    0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+    20% { opacity: 1; }
+    50% { transform: translateY(-60px) rotate(360deg); }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-100px) rotate(720deg); }
+}
+
+@keyframes fadeText {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.heart-fall {
+    position: absolute;
+    font-size: 20px;
+    color: #ff3366;
+    animation: fall 5s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Botón de volver arriba */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff69b4;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    background-color: #ff85c1;
+}
+
+/* Estilos para el reproductor de música */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.music-player button {
+    background: #ff69b4;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.music-player button:hover {
+    background: #ff85c1;
+}
+
+.music-player input[type="range"] {
+    width: 100px;
+}
+
+.music-title {
+    font-size: 12px;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+</style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="letter">
+            <div class="letter-title">Para mi amor</div>
+            <div class="letter-content">
+                <p>Mi amor,</p>
+                
+                <p>Desde que llegaste a mi vida, todo tiene más color. Eres un hombre increíble: fuerte, atento y protector, aunque a veces puedas ser un poco complicado. Pero precisamente por eso te amo, porque eres auténtico y real.</p>
+                
+                <p>Estoy completamente segura de que quiero que seas el último hombre en mi vida. Haré todo lo que esté en mis manos para que nuestra relación funcione, porque contigo he encontrado un amor que vale cualquier esfuerzo.</p>
+                
+                <p>Me encanta todo de ti: tus ojos que me miran con esa intensidad, tu sonrisa que ilumina mis días, tu manera de ser, incluso cuando te pones un poco pesado o brusco. Porque detrás de eso, está un hombre que me cuida como nadie más lo ha hecho.</p>
+                
+                <p>Adoro cómo me agarras de la cintura, cómo me besas el cuello haciéndome estremecer, esos susurros en mi oído que me derriten. Me vuelve loca la manera en que me besas, cómo me aprietas fuerte contra ti como si no quisieras soltarme nunca, y cuando me cargas siento que no hay lugar en el mundo donde pertenezca más que en tus brazos.</p>
+                
+                <p>Hasta tus inseguridades las amo, porque son parte de ti. Sé que no siempre es fácil encontrarles solución, y que las cosas no cambian de la noche a la mañana, pero quiero que sepas que estaré ahí, siempre. Incluso cuando las palabras no alcancen para expresar lo que sientes, yo te escucharé, te abrazaré y te recordaré que no estás solo.</p>
+                
+                <p>Eres mi hombre, mi amor complicado y perfecto, y no hay nada en este mundo que me haga más feliz que ser tuya.</p>
+            </div>
+            <div class="signature">Con amor,<br>Tu Niña 💖</div>
+        </div>
+
+        <div class="scene">
+            <div class="text">💖 Te amo mucho 💖</div>
+            <div class="nina">
+                <div class="hair">
+                    <div class="side-hair left"></div>
+                    <div class="side-hair right"></div>
+                </div>
+                <div class="face">
+                    <div class="bangs"></div>
+                    <div class="hair-shine"></div>
+                    <div class="bow">
+                        <div class="bow-left"></div>
+                        <div class="bow-center"></div>
+                        <div class="bow-right"></div>
+                        <div class="bow-ribbon"></div>
+                    </div>
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                    <div class="cheek left"></div>
+                    <div class="cheek right"></div>
+                    <div class="mouth"></div>
+                </div>
+                <div class="dress">
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hearts-container" id="hearts-container"></div>
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <div class="music-player">
+        <button id="playPauseBtn">▶</button>
+        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+        <span class="music-title" id="songTitle">Canción de amor</span>
+    </div>
+
+    <!-- Elemento de audio (invisible) -->
+    <audio id="myAudio" loop>
+        <!-- Asegúrate que la ruta sea correcta -->
+        <source src="audio/matisse.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+
+<script>
+
+    // Configuración del reproductor de música
+     const audioPlayer = document.getElementById('myAudio'); // Usamos el elemento del DOM
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const volumeControl = document.getElementById('volumeControl');
+    const songTitle = document.getElementById('songTitle');
+    
+     // Configuración inicial
+    songTitle.textContent = "TI AMO MUCHO"; // Nombre de la canción
+    audioPlayer.volume = 0.5; // Volumen inicial al 50%
+    audioPlayer.loop = true; // Para que se repita automáticamente
+    
+// Intenta reproducir automáticamente al cargar la página
+const tryAutoplay = () => {
+    const playPromise = audioPlayer.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            // Autoplay funcionó
+            playPauseBtn.textContent = '❚❚';
+        }).catch(error => {
+            // Autoplay fue bloqueado
+            console.log("Autoplay bloqueado:", error);
+            // Mostrar instrucciones para el usuario
+            showPlayMessage();
+        });
+    }
+};
+
+// Muestra mensaje para que el usuario active el audio
+const showPlayMessage = () => {
+    const playMessage = document.createElement('div');
+    playMessage.style.position = 'fixed';
+    playMessage.style.bottom = '80px';
+    playMessage.style.left = '20px';
+    playMessage.style.backgroundColor = 'rgba(255,255,255,0.9)';
+    playMessage.style.padding = '10px';
+    playMessage.style.borderRadius = '5px';
+    playMessage.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+    playMessage.style.zIndex = '1000';
+    playMessage.innerHTML = 'Haz clic en cualquier parte para activar la música';
+    document.body.appendChild(playMessage);
+    
+    // Eliminar el mensaje después de 5 segundos
+    setTimeout(() => {
+        playMessage.remove();
+    }, 5000);
+};
+
+// Evento para activar manualmente
+const enableAudio = () => {
+    audioPlayer.play().then(_ => {
+        playPauseBtn.textContent = '❚❚';
+    }).catch(e => {
+        console.log("Error al reproducir:", e);
+    });
+};
+
+// Intenta autoplay cuando la página carga
+window.addEventListener('load', tryAutoplay);
+
+// También intenta cuando el usuario interactúa con la página
+document.addEventListener('click', () => {
+    if (audioPlayer.paused) {
+        enableAudio();
+    }
+}, { once: true });
+
+// Eventos del reproductor
+playPauseBtn.addEventListener('click', () => {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseBtn.textContent = '❚❚';
+    } else {
+        audioPlayer.pause();
+        playPauseBtn.textContent = '▶';
+    }
+});
+
+volumeControl.addEventListener('input', () => {
+    audioPlayer.volume = volumeControl.value;
+});
+
+// Efectos de flores y corazones
+const scene = document.querySelector('.scene');
+const flowers = ['🌼', '🌹', '🌸', '🌺', '🌻'];
+const hearts = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍'];
+
+function createFlower(x, y) {
+    const flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+    flower.style.left = `${x}px`;
+    flower.style.top = `${y}px`;
+    scene.appendChild(flower);
+    setTimeout(() => flower.remove(), 3000);
+}
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart-fall';
+    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    document.getElementById('hearts-container').appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(() => {
+    const x = 140 + Math.random() * 40;
+    const y = 100 + Math.random() * 20;
+    createFlower(x, y);
+}, 1500);
+
+setInterval(createHeart, 300);
+
+scene.addEventListener('click', (e) => {
+    const rect = scene.getBoundingClientRect();
+    createFlower(e.clientX - rect.left, e.clientY - rect.top);
+});
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.scene')) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-fall';
+        heart.innerHTML = '❤️';
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        heart.style.animationDuration = '2s';
+        document.getElementById('hearts-container').appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+    }
+});
+
+// Botón para volver arriba
+const backToTopBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('visible');
+    } else {
+        backToTopBtn.classList.remove('visible');
+    }
+});
+
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+</script>
+</body>
+</html>
